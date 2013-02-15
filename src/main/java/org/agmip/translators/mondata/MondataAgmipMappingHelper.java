@@ -9,8 +9,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.List;
-import java.util.logging.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -126,6 +124,12 @@ public class MondataAgmipMappingHelper {
         return ret;
     }
 
+    /**
+     * Get the convert type for given variable name
+     * 
+     * @param name The variable name (Mondata or AgMIP)
+     * @return The convert type (defined by mapping file)
+     */
     public static ConvertType getConvertType(String name) {
 
         if (!convertMap.containsKey(name)) {
