@@ -83,7 +83,7 @@ public class MondataCSVInput implements TranslatorInput {
     /**
      * Add a record to the Map when key variable is valid, or add to array
      *
-     * @param toMap The records with primary key variable
+     * @param to The records with primary key variable
      * @param record The data record
      * @param keyName The name of key variable
      * @param toArr The records without primary key variable
@@ -148,7 +148,8 @@ public class MondataCSVInput implements TranslatorInput {
     /**
      * Translate Mondata title to AgMIP variable name
      *
-     * @param titles The array of Mondata title
+     * @param reader The content of Mondata
+     * @param fileName The csv file name
      * @return The map of AgMIP variable name with index of input array
      */
     protected LinkedHashMap<String, Integer> translateTitles(List<String[]> reader, String fileName) {
