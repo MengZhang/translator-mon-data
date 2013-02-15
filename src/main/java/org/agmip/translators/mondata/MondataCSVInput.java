@@ -218,7 +218,6 @@ public class MondataCSVInput implements TranslatorInput {
                 while (expData.containsKey("mon_wst_info" + count)) {
                     count++;
                 }
-                System.out.println(exname + ", mon_wst_info" + count + ", " + monWstInfo);
                 expData.put("mon_wst_info" + count, monWstInfo);
             }
         }
