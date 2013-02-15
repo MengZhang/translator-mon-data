@@ -125,6 +125,14 @@ public class MondataCSVInput implements TranslatorInput {
         return ret;
     }
     
+    /**
+     * Add a record to the Map when key variable is valid, or add to array
+     * 
+     * @param toMap The records with primary key variable
+     * @param record The data record
+     * @param keyName The name of key variable
+     * @param toArr The records without primary key variable
+     */
     private void addRecord(HashMap<String, HashMap> to, HashMap record, String keyName, ArrayList<HashMap> toArr) {
         if (record != null && !record.isEmpty()) {
             String key = getObjectOr(record, keyName, "");
@@ -136,6 +144,13 @@ public class MondataCSVInput implements TranslatorInput {
         }
     }
     
+    /**
+     * Combine the data
+     * 
+     * @param toMap The records with primary key variable
+     * @param toArr The records without primary key variable
+     * @return The final array of a data section
+     */
     private ArrayList<HashMap> combineData(HashMap<String, HashMap> toMap, ArrayList<HashMap> toArr) {
         ArrayList<HashMap> ret = new ArrayList();
         for (HashMap m : toMap.values()) {
@@ -145,18 +160,28 @@ public class MondataCSVInput implements TranslatorInput {
         return ret;
     }
     
+    /**
+     * Read experiment data from Mondata
+     * 
+     * @param csvFiles The group of all csv file
+     * @return The map of experiment data
+     * @throws IOException 
+     */
     private LinkedHashMap<String, HashMap> readExpData(HashMap<String, List<String[]>> csvFiles) throws IOException {
         
         ArrayList<String> unreadable = new ArrayList();
         LinkedHashMap<String, HashMap> expDataMap = new LinkedHashMap();
         
+        // Loop to find experiment data file
         for (String fileName : csvFiles.keySet()) {
+            // Get file content
             List<String[]> reader = csvFiles.get(fileName);
             if (reader == null || reader.isEmpty()) {
                 log.debug("Can not read content from " + fileName);
                 unreadable.add(fileName);
                 continue;
             }
+            // Get title line
             String[] titles = reader.get(0);
             LinkedHashMap<String, Integer> titleToId;
             if (titles == null) {
@@ -166,30 +191,30 @@ public class MondataCSVInput implements TranslatorInput {
             } else {
                 titleToId = getTitles(titles);
             }
-            
+            // Check if it is the experiment file
             if (judgeContentType(titleToId).equals(DataType.EXPERIMENT)) {
 
-//                expDataArr = new ArrayList();
+                // Read each experiement data
                 HashMap data;
-                int exnameCol = titleToId.get("exname");
-
-//                String[] values;
-//                while ((values = reader.readNext()) != null) {
                 for (int i = 1; i < reader.size(); i++) {
                     String[] values = reader.get(i);
-                    String exname = values[exnameCol];
+                    String exname = values[titleToId.get("exname")];
+                    // Check if the experiement data is already recorded
                     if (!expDataMap.containsKey(exname)) {
                         data = new HashMap();
-//                        expDataArr.add(data);
                         expDataMap.put(exname, data);
                     } else {
                         data = expDataMap.get(exname);
                     }
+                    // Scan the line
                     int limit = Math.min(titles.length, values.length);
                     for (int j = 0; j < limit; j++) {
-                        if (!values[j].trim().equals("")) {
-                            AcePathfinderUtil.insertValue(data, titles[j], values[j].trim());
+                        // Do value convert if necessary
+                        ConvertType convType = MondataAgmipMappingHelper.getConvertType(titles[j]);
+                        if (ConvertType.DATE.equals(convType)) {
+                            values[j] = translateDateStr(values[j]);
                         }
+                        AcePathfinderUtil.insertValue(data, titles[j], values[j].trim(), 0);
                     }
                 }
                 csvFiles.remove(fileName);
@@ -197,6 +222,7 @@ public class MondataCSVInput implements TranslatorInput {
             }
         }
         
+        // Remove unreadable file from list
         for (int i = 0; i < unreadable.size(); i++) {
             csvFiles.remove(unreadable.get(i));
         }
@@ -204,6 +230,12 @@ public class MondataCSVInput implements TranslatorInput {
         return expDataMap;
     }
     
+    /**
+     * Translate Mondata title to AgMIP variable name
+     * 
+     * @param titleLine The array of Mondata title
+     * @return The map of AgMIP variable name with index of input array
+     */
     protected LinkedHashMap<String, Integer> getTitles(String[] titleLine) {
         LinkedHashMap<String, Integer> ret = new LinkedHashMap();
         for (int i = 0; i < titleLine.length; i++) {
