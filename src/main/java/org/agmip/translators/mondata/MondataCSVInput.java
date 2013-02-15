@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
  * @author Meng Zhang
  * @version 1.0
  */
-public abstract class MondataCSVInput implements TranslatorInput {
+public class MondataCSVInput implements TranslatorInput {
     
     private enum DataType {
         
