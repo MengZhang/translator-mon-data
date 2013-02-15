@@ -1,0 +1,79 @@
+#,Mon names,AgMIP name,Notes
+!,,,
+*,EXNAME,EXNAME,
+*,EXP_DUR,EXP_DUR,
+*,LOCAL_NAME,LOCAL_NAME,
+*,LOCAL_ID,LOCAL_ID,
+*,FL_NAME,FL_NAME,
+*,ID_FIELD,ID_FIELD,
+*,FL_LOC_1,FL_LOC_1,
+*,FL_LOC_2,FL_LOC_2,
+*,FL_LOC_3,FL_LOC_3,
+*,FL_LAT,FL_LAT,
+*,FL_LONG,FL_LONG,
+*,LOC_SOURCE,mon_loc_source,
+*,ADMIN_AREA,mon_admin_area,
+*,FL_ELE,flele,
+*,CR,crid,
+*,CUL_ID,CUL_ID,
+*,CR_SYSTEM,CR_SYSTEM,
+*,IRRIG,IRRIG,
+*,TI_PRACTICE,ti_notes,
+*,PLANTING_YEAR,mon_planting_year,
+*,PDATE,mon_pdate,date convert
+*,HDATE,mon_hdate,date convert
+*,ICPCR,ICPCR,
+*,HARM,HARM,
+*,HACOM,mon_hacom,
+*,EXPT_TYPE,mon_expt_type,
+*,EXPT_STAGE,mon_expt_stage,
+*,PLPOE,PLPOE,
+*,PLRS,PLRS,
+*,YLD_BE,mon_yld_be,
+*,HWAH,HWAH,
+*,HWAHS,HWAHS,
+*,MST,mon_mst,
+*,HMAH,HMAH,
+*,HMAHS,HMAHS,
+*,RM,RM,
+*,P50,mon_p50,
+*,P50_STDDEV,mon_p50_stddev,
+*,P50D,adap,
+*,P50D_STDDEV,adaps,
+*,CHTX,CHTX,
+*,CHTXS,CHTXS,
+*,SLTX,SLTX,move to soils
+*,SL_SOURCE,SL_SOURCE,move to soils
+*,SOIL_ID,SOIL_ID,move to soils
+*,SOIL_NAME,SOIL_NAME,move to soils
+*,SL_SYSTEM,SL_SYSTEM,move to soils
+*,CLASSIFICATION,CLASSIFICATION,move to soils
+*,SOIL_ELEV,SOIL_ELEV,move to soils
+*,SLOPE_PCT,sl_slope,
+*,SALB,SALB,move to soils
+*,DRAINAGE,DRAINAGE,move to soils
+*,EXNAME,EXNAME,
+*,WSTA_CODE,wst_id,weather
+*,WSTA_NAME,wst_name,weather
+*,WSTA_LAT,wst_lat,weather
+*,WSTA_LONG,wst_long,weather
+*,WSTA_SOURCE,wst_source,weather
+*,WSTA_DistFromField,mon_wsta_distfromfield,
+*,WSTA_ELEV,wst_elev,weather
+*,EXNAME,EXNAME,
+*,SOIL_ID,SOIL_ID,
+*,SoilHorizonID,mon_SoilHorizonID,
+*,SLMH,SLMH,
+*,SLLB,SLLB,
+*,SLBDM,SLBDM,
+*,SLCLY,SLCLY,
+*,SLSIL,SLSIL,
+*,SLCF,SLCF,
+*,SKSAT,SKSAT,
+*,SLOC,SLOC,
+*,SLPHW,SLPHW,
+*,SLLT,SLLT,
+*,SLSND,SLSND,
+*,SLFC1,SLFC1,
+*,SLFC2,SLFC2,
+*,SLWP,SLWP,
