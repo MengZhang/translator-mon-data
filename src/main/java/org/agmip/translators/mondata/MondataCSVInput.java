@@ -281,15 +281,9 @@ public class MondataCSVInput implements TranslatorInput {
             while (e.hasMoreElements()) {
                 ZipEntry entry = (ZipEntry) e.nextElement();
                 if (entry.getName().toUpperCase().endsWith(".CSV")) {
-                    CSVReader reader = new CSVReader(new BufferedReader(new InputStreamReader(zf.getInputStream(entry))));
-//                    ArrayList<String[]> arr = new ArrayList();
-//                    String[] strs;
-//                    while ((strs = reader.readNext()) != null) {
-//                        arr.add(strs);
-//                    }
                     result.put(
                             entry.getName().toUpperCase(),
-                            reader.readAll());
+                            new CSVReader(new BufferedReader(new InputStreamReader(zf.getInputStream(entry)))).readAll());
                 }
             }
             zf.close();
