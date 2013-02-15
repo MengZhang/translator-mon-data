@@ -92,7 +92,7 @@ public class MondataAgmipMappingHelper {
                 LOG.info("Finished");
                 LOG.debug("Loading result:{}", monToAgMIP);
                 reader.close();
-                
+
             } catch (FileNotFoundException e) {
                 LOG.info("Failed");
                 LOG.error(e.getMessage());
@@ -102,24 +102,7 @@ public class MondataAgmipMappingHelper {
             }
 
         } else {
-//            try {
-                LOG.debug("No change on mapping file, keep using last loaded records.");
-//                InputStream stream = MondataAgmipMappingHelper.class.getResourceAsStream(MAPPING_FILE);
-//                BufferedReader br = new BufferedReader(new InputStreamReader(stream));
-//                CSVReader reader = new CSVReader(br);
-//                List<String[]> list = reader.readAll();
-//                for (int i = 0; i < list.size(); i++) {
-//                    String[] vars = list.get(i);
-//                    for (int j = 0; j < vars.length; j++) {
-//                        System.out.print(vars[j] + "\t");
-//                    
-//                        
-//                    }
-//                    System.out.println();
-//                }
-//            } catch (IOException ex) {
-//                java.util.logging.Logger.getLogger(MondataAgmipMappingHelper.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            LOG.debug("No change on mapping file, keep using last loaded records.");
         }
     }
 
@@ -142,11 +125,11 @@ public class MondataAgmipMappingHelper {
         LOG.debug("Find mapping for <MON> " + monName + ": <AgMIP> " + ret);
         return ret;
     }
-    
+
     public static ConvertType getConvertType(String name) {
-        
+
         if (!convertMap.containsKey(name)) {
-            return  convertMap.get(monToAgMIP.get(name));
+            return convertMap.get(monToAgMIP.get(name));
         } else {
             return convertMap.get(name);
         }
