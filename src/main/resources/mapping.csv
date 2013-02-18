@@ -20,8 +20,8 @@
 *,IRRIG,IRRIG,
 *,TI_PRACTICE,ti_notes,
 *,PLANTING_YEAR,mon_planting_year,
-*,PDATE,mon_pdate,date convert
-*,HDATE,mon_hdate,date convert
+*,PDATE,pdate,date convert
+*,HDATE,hadat,date convert
 *,ICPCR,ICPCR,
 *,HARM,HARM,
 *,HACOM,mon_hacom,
