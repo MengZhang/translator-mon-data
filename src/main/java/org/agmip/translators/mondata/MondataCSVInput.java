@@ -14,6 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import org.agmip.ace.AcePathfinder;
 import org.agmip.ace.util.AcePathfinderUtil;
 import org.agmip.core.types.TranslatorInput;
 import org.agmip.translators.mondata.MondataAgmipMappingHelper.ConvertType;
@@ -141,7 +142,6 @@ public class MondataCSVInput implements TranslatorInput {
                 break;
             }
         }
-
         return expDataMap;
     }
 
@@ -205,12 +205,13 @@ public class MondataCSVInput implements TranslatorInput {
                     if (ConvertType.DATE.equals(convType)) {
                         values[j] = translateDateStr(values[j]);
                     }
-                    AcePathfinderUtil.insertValue(expData, titles[j], values[j].trim(), 0);
+                    AcePathfinderUtil.insertValue(expData, titles[j], values[j].trim(), true);
                 }
             }
 
             // Convert mon_wsta_distfromfield to mon_wst_infoX (X = [1,) )
-            if (judgeContentType(titleToId).equals(DataType.WEATHER_STATION)) {
+            DataType type = judgeContentType(titleToId);
+            if (type.equals(DataType.WEATHER_STATION)) {
                 String wstDist = (String) expData.remove("mon_wsta_distfromfield");
                 String wstId = (String) expData.remove("wst_id");
                 String monWstInfo = wstId + "|" + wstDist;
@@ -218,7 +219,18 @@ public class MondataCSVInput implements TranslatorInput {
                 while (expData.containsKey("mon_wst_info" + count)) {
                     count++;
                 }
-                expData.put("mon_wst_info" + count, monWstInfo);
+                AcePathfinderUtil.insertValue(expData, "mon_wst_info" + count, monWstInfo);
+            } else if (type.equals(DataType.SOIL_LAYER)) {
+                AcePathfinderUtil.insertValue(expData, "mon_soilhorizonid", (String) expData.remove("mon_soilhorizonid"), AcePathfinder.INSTANCE.getPath("sllb"));
+                AcePathfinderUtil.insertValue(expData, "sllt", (String) expData.remove("sllt"), AcePathfinder.INSTANCE.getPath("sllb"));
+            } else if (type.equals(DataType.EXPERIMENT)) {
+                HashMap<String, Object> soilData = (HashMap) expData.get("soil");
+                if (soilData != null && !soilData.containsKey("soil_id")) {
+                    for (String key : soilData.keySet()) {
+                        expData.put("mon_" + key, soilData.get(key));
+                    }
+                    expData.remove("soil");
+                }
             }
         }
     }
