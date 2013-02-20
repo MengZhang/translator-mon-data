@@ -132,7 +132,6 @@ public class MondataCSVInputTest {
                     System.out.println(e.getMessage());
                 }
             }
-            retKeys.remove(key);
         }
         return count;
 
@@ -142,11 +141,11 @@ public class MondataCSVInputTest {
 
         int count = 0;
         int limit = Math.min(expected.size(), result.size());
-        if (limit > expected.size()) {
+        if (limit != expected.size()) {
             count++;
             System.out.println(key + "\tAcutally " + (limit - expected.size()) + " more records");
         }
-        if (limit > result.size()) {
+        if (limit != result.size()) {
             count++;
             System.out.println(key + "\tExpected " + (limit - expected.size()) + " more records");
         }
