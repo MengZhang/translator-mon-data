@@ -72,7 +72,7 @@ public class MondataCSVInput implements TranslatorInput {
         // combine the maps
         String newKey;
         for (HashMap expData : expDataMap.values()) {
-            newKey= addRecord(soilDataMap, (HashMap) expData.remove("soil"), "soil_id", soilDataArr);
+            newKey = addRecord(soilDataMap, (HashMap) expData.remove("soil"), "soil_id", soilDataArr);
             if (!newKey.equals("")) {
                 expData.put("soil_id", newKey);
             }
@@ -113,7 +113,7 @@ public class MondataCSVInput implements TranslatorInput {
                         int count = 1;
                         newKey = key + "_" + count;
                         record.put(keyName, newKey);
-                        while(to.containsKey(newKey)) {
+                        while (to.containsKey(newKey)) {
                             if (!to.get(newKey).equals(record)) {
                                 count++;
                                 newKey = key + "_" + count;
@@ -210,7 +210,7 @@ public class MondataCSVInput implements TranslatorInput {
 
     /**
      * Read the data from CSV and save to the related record
-     * 
+     *
      * @param reader The csv file content
      * @param titleToId The AgMIP variable name map
      * @param expDataMap The experiment data map with EXNAME as key
@@ -253,7 +253,7 @@ public class MondataCSVInput implements TranslatorInput {
                     count++;
                 }
                 AcePathfinderUtil.insertValue(expData, "mon_wst_info" + count, monWstInfo);
-                
+
                 HashMap wthData = (HashMap) expData.remove("weather");
                 if (wthData != null && !wthData.isEmpty()) {
                     ArrayList wthArr = (ArrayList) expData.get("weathers");
