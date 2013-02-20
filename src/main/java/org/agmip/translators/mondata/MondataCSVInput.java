@@ -70,12 +70,19 @@ public class MondataCSVInput implements TranslatorInput {
         }
 
         // combine the maps
+        String newKey;
         for (HashMap expData : expDataMap.values()) {
-            addRecord(soilDataMap, (HashMap) expData.remove("soil"), "soil_id", soilDataArr);
+            newKey= addRecord(soilDataMap, (HashMap) expData.remove("soil"), "soil_id", soilDataArr);
+            if (!newKey.equals("")) {
+                expData.put("soil_id", newKey);
+            }
             ArrayList<HashMap> wthArr = (ArrayList<HashMap>) expData.remove("weathers");
             if (wthArr != null) {
                 for (int i = 0; i < wthArr.size(); i++) {
-                    addRecord(wthDataMap, wthArr.get(i), "wst_id", wthDataArr);
+                    newKey = addRecord(wthDataMap, wthArr.get(i), "wst_id", wthDataArr);
+                    if (!newKey.equals("")) {
+                        expData.put("wst_id", newKey);
+                    }
                 }
             }
         }
@@ -94,15 +101,36 @@ public class MondataCSVInput implements TranslatorInput {
      * @param keyName The name of key variable
      * @param toArr The records without primary key variable
      */
-    protected void addRecord(HashMap<String, HashMap> to, HashMap record, String keyName, ArrayList<HashMap> toArr) {
+    protected String addRecord(HashMap<String, HashMap> to, HashMap record, String keyName, ArrayList<HashMap> toArr) {
+        String newKey = "";
         if (record != null && !record.isEmpty()) {
             String key = getObjectOr(record, keyName, "");
             if (key.equals("")) {
                 toArr.add(record);
             } else {
-                to.put(key, record);
+                if (to.containsKey(key)) {
+                    if (!to.get(key).equals(record)) {
+                        int count = 1;
+                        newKey = key + "_" + count;
+                        record.put(keyName, newKey);
+                        while(to.containsKey(newKey)) {
+                            if (!to.get(newKey).equals(record)) {
+                                count++;
+                                newKey = key + "_" + count;
+                                record.put(keyName, newKey);
+                            } else {
+                                return newKey;
+                            }
+                        }
+                        to.put(newKey, record);
+                    } else {
+                    }
+                } else {
+                    to.put(key, record);
+                }
             }
         }
+        return newKey;
     }
 
     /**
