@@ -72,7 +72,12 @@ public class MondataCSVInput implements TranslatorInput {
         // combine the maps
         for (HashMap expData : expDataMap.values()) {
             addRecord(soilDataMap, (HashMap) expData.remove("soil"), "soil_id", soilDataArr);
-            addRecord(wthDataMap, (HashMap) expData.remove("weather"), "wst_id", wthDataArr);
+            ArrayList<HashMap> wthArr = (ArrayList<HashMap>) expData.remove("weathers");
+            if (wthArr != null) {
+                for (int i = 0; i < wthArr.size(); i++) {
+                    addRecord(wthDataMap, wthArr.get(i), "wst_id", wthDataArr);
+                }
+            }
         }
         ret.put("experiments", combineData(expDataMap, expDataArr));
         ret.put("soils", combineData(soilDataMap, soilDataArr));
@@ -220,6 +225,16 @@ public class MondataCSVInput implements TranslatorInput {
                     count++;
                 }
                 AcePathfinderUtil.insertValue(expData, "mon_wst_info" + count, monWstInfo);
+                
+                HashMap wthData = (HashMap) expData.remove("weather");
+                if (wthData != null && !wthData.isEmpty()) {
+                    ArrayList wthArr = (ArrayList) expData.get("weathers");
+                    if (wthArr == null) {
+                        wthArr = new ArrayList();
+                        expData.put("weathers", wthArr);
+                    }
+                    wthArr.add(wthData);
+                }
             } else if (type.equals(DataType.SOIL_LAYER)) {
                 AcePathfinderUtil.insertValue(expData, "mon_soilhorizonid", (String) expData.remove("mon_soilhorizonid"), AcePathfinder.INSTANCE.getPath("sllb"));
                 AcePathfinderUtil.insertValue(expData, "sllt", (String) expData.remove("sllt"), AcePathfinder.INSTANCE.getPath("sllb"));
