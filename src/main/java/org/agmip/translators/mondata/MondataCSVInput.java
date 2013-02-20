@@ -101,7 +101,7 @@ public class MondataCSVInput implements TranslatorInput {
      * @param keyName The name of key variable
      * @param toArr The records without primary key variable
      */
-    protected String addRecord(HashMap<String, HashMap> to, HashMap record, String keyName, ArrayList<HashMap> toArr) {
+    private String addRecord(HashMap<String, HashMap> to, HashMap record, String keyName, ArrayList<HashMap> toArr) {
         String newKey = "";
         if (record != null && !record.isEmpty()) {
             String key = getObjectOr(record, keyName, "");
@@ -140,7 +140,7 @@ public class MondataCSVInput implements TranslatorInput {
      * @param toArr The records without primary key variable
      * @return The final array of a data section
      */
-    protected ArrayList<HashMap> combineData(HashMap<String, HashMap> toMap, ArrayList<HashMap> toArr) {
+    private ArrayList<HashMap> combineData(HashMap<String, HashMap> toMap, ArrayList<HashMap> toArr) {
         ArrayList<HashMap> ret = new ArrayList();
         for (HashMap m : toMap.values()) {
             ret.add(m);
@@ -156,7 +156,7 @@ public class MondataCSVInput implements TranslatorInput {
      * @return The map of experiment data
      * @throws IOException
      */
-    protected LinkedHashMap<String, HashMap> readExpData(HashMap<String, List<String[]>> csvFiles) throws IOException {
+    private LinkedHashMap<String, HashMap> readExpData(HashMap<String, List<String[]>> csvFiles) throws IOException {
 
         LinkedHashMap<String, HashMap> expDataMap = new LinkedHashMap();
 
@@ -185,7 +185,7 @@ public class MondataCSVInput implements TranslatorInput {
      * @param fileName The csv file name
      * @return The map of AgMIP variable name with index of input array
      */
-    protected LinkedHashMap<String, Integer> translateTitles(List<String[]> reader, String fileName) {
+    private LinkedHashMap<String, Integer> translateTitles(List<String[]> reader, String fileName) {
 
         LinkedHashMap<String, Integer> ret = new LinkedHashMap();
         // Check file content
