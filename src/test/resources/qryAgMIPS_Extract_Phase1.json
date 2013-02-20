@@ -10652,6 +10652,65 @@
             ]
         },
         {
+            "sltx": "SICL",
+            "sl_source": "SSURGO, Dominant Component",
+            "soil_id": "436125:599976_1",
+            "soil_name": "Clarion",
+            "sl_system": "USDA_NRCS",
+            "classification": "Fine-loamy, mixed, superactive, mesic Typic Hapludolls",
+            "soil_elev": "346",
+            "sl_slope": "4",
+            "salb": "0.09",
+            "drainage": "Well drained",
+            "soilLayer": [
+                {
+                    "mon_soilhorizonid": "436125:1315476",
+                    "slmh": "Ap,A",
+                    "sllb": "41",
+                    "slcly": "23.5",
+                    "slsil": "37.3",
+                    "slcf": "2.427184466",
+                    "sksat": "9.17",
+                    "sloc": "4.5",
+                    "slphw": "6.5",
+                    "sllt": "0",
+                    "slsnd": "39.2",
+                    "slfc1": "31.5",
+                    "slwp": "18.7"
+                },
+                {
+                    "mon_soilhorizonid": "436125:1315477",
+                    "slmh": "Bw",
+                    "sllb": "79",
+                    "slcly": "26.5",
+                    "slsil": "35.6",
+                    "slcf": "7.281553398",
+                    "sksat": "9.17",
+                    "sloc": "0.75",
+                    "slphw": "6.7",
+                    "sllt": "41",
+                    "slsnd": "37.9",
+                    "slfc1": "28.7",
+                    "slwp": "15.2"
+                },
+                {
+                    "mon_soilhorizonid": "436125:1315478",
+                    "slmh": "C",
+                    "sllb": "152",
+                    "slcly": "26",
+                    "slsil": "36",
+                    "slcf": "8.252427184",
+                    "sksat": "9.17",
+                    "sloc": "0.25",
+                    "slphw": "7.9",
+                    "sllt": "79",
+                    "slsnd": "38",
+                    "slfc1": "28",
+                    "slwp": "14.2"
+                }
+            ]
+        },
+        {
             "sltx": "SIL",
             "sl_source": "SSURGO, Texture Component",
             "soil_id": "183921:267717",
@@ -10722,6 +10781,65 @@
                     "slsnd": "41",
                     "slfc1": "24.4",
                     "slwp": "9.5"
+                }
+            ]
+        },
+        {
+            "sltx": "L",
+            "sl_source": "SSURGO, Texture Component",
+            "soil_id": "937038:278382_1",
+            "soil_name": "Normandy",
+            "sl_system": "USDA_NRCS",
+            "classification": "Fine-loamy, mixed, superactive, calcareous, mesic Fluvaquentic Endoaquolls",
+            "sl_slope": "0.5",
+            "salb": "0.09",
+            "drainage": "Poorly drained",
+            "soilLayer": [
+                {
+                    "mon_soilhorizonid": "937038:669336",
+                    "slmh": "A",
+                    "sllb": "33",
+                    "slcly": "23",
+                    "slsil": "45",
+                    "slcf": "2.5",
+                    "sksat": "9.17",
+                    "sloc": "6",
+                    "slphw": "7.9",
+                    "sllt": "0",
+                    "slsnd": "32",
+                    "slfc1": "33.6",
+                    "slwp": "21.7"
+                },
+                {
+                    "mon_soilhorizonid": "937038:669337",
+                    "slmh": "Bg",
+                    "sllb": "137",
+                    "slcly": "25",
+                    "slsil": "55",
+                    "slcf": "5",
+                    "sksat": "9.17",
+                    "sloc": "1.25",
+                    "slphw": "7.9",
+                    "sllt": "33",
+                    "slsnd": "20",
+                    "slfc1": "29.5",
+                    "slwp": "15.5"
+                },
+                {
+                    "mon_soilhorizonid": "937038:669338",
+                    "slmh": "Cg",
+                    "sllb": "152",
+                    "slcly": "3",
+                    "slsil": "2",
+                    "slcf": "9",
+                    "sksat": "91.74",
+                    "sloc": "0.25",
+                    "slphw": "7.9",
+                    "sllt": "137",
+                    "slsnd": "95",
+                    "slfc1": "8.5",
+                    "slfc2": "12.4",
+                    "slwp": "2.5"
                 }
             ]
         },
