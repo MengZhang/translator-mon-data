@@ -24,7 +24,7 @@
   <logger name="org.agmip.ui.quadui.QuadUIWindow" level="DEBUG" />
   <logger name="org.agmip.translators.csv.CSVInput" level="DEBUG" />
 -->
-  <root level="DEBUG">
+  <root level="INFO">
     <appender-ref ref="CLI" />
   </root>
 </configuration>
